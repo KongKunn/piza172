@@ -1,488 +1,906 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.2.1-web/css/all.min.css">
-    <link rel="stylesheet" href="assets/style.css">
-    <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
-    <script src="https://kit.fontawesome.com/bcacd0c471.js" crossorigin="anonymous"></script>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
 
-</head>
-<body>
-<div class="modal  ">
-    <div class="container-cart ">
-        <div class="header-cart">
-            <lord-icon 
-                src="https://cdn.lordicon.com/cllunfud.json"
-                trigger="loop"
-                colors="outline:#e8b730,primary:#646e78,secondary:#646e78"
-                style="width:50px;height:50px">
-            </lord-icon>            
-            <h2>Yourcart </h2> 
-            <div class="xmark">
-                <i class='fas fa-xmark' onclick="closemodal()"></i>
-            </div>
-        </div>
-        <hr>
-        <div class="body-cart">    
-            <div class="pay">
-                        <h3 class="title"> Paymen</h3>
-                        <img style="max-width: 150px;" src="./assets/img/card2.png" alt="">
-                <form action="">
-                    <div class="inputbox" onsubmit="return validate()">
-                        <input required="required" type="text" id="namecard" >
-                        <span class="card-name">Name of Card :</span>
-                        <span id="error1"></span>
-                        <i></i>
-                    </div>
-                    <div class="inputbox">
-                        <input required type="text" id="cardnumber">
-                        <span class="card-number">Credit Card Number :</span>
-                        <i></i>
-                    </div>
-                    <div class="inputbox">
-                        <input required="required" type="text" id="expmonth" >
-                        <span class="card-expMonth">Exp Month :</span>
-                        <i></i>
-                    </div>
-                    <div class="inputbox">
-                        <input required="required" type="text" id="expyear">
-                        <span class="card-expYear">Exp Year :</span>
-                        <i></i>
-                    </div>
-                    <div class="inputbox">
-                        <input required="required" type="text" id="cvv" >
-                        <span class="card-CVV">CVV :</span>
-                        <i></i>
-                    </div>
-                </form>
-            </div>
-            <hr>
-            <div class="product">
-                <h3>Product</h3>    
-            
-            </div>
-        </div>
-    </div>
-</div>
-<!-------------- End Modal ------------>
-    <!-- header section starts -->
-<header>
-    <a href="#"class="logo"><i class="fas fa-utensils"></i>KongKun Food</a>
-    
-    <div id="menu-bar"class="fas fa-bars"></div>
+:root {
+  --red: #ff3838;
+}
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 0.2s linear;
+}
 
-    <nav class="navbar">
-        <a href="#home">home</a>
-        <a href="#speciality">speciality</a>
-        <a href="#popular">popular</a>
-        <a href="#gallery">gallery</a>
-        <a href="#review">review</a>
-        <a href="#order">oder</a>
-        
-            
-    </nav>
-    <div class="form">
-        <input class="input" placeholder="Search" required="" type="text">
-        <span class="input-border"></span>
-    </div>
-    
+*::selection {
+  background: var(--red);
+  color: #fff;
+}
 
-        <button >
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+body {
+  background: #f7f7f7;
+}
 
-            <lord-icon class="cart" 
-            src="https://cdn.lordicon.com/cllunfud.json"
-            trigger="hover"
-            style="width:50px;height:50px;bottom: 0;" 
-            onclick="openModal()">
-            
-            </lord-icon>
-        </button>
-                    
-   
-</header>  
-<!-- ====================== -->
-<!-- Cart -->
-<!-- ====================== -->
+section {
+  padding: 2rem 9%;
+}
 
+.heading {
+  text-align: center;
+  font-size: 3.5rem;
+  padding: 1rem;
+  color: #666;
+}
+.heading span {
+  color: var(--red);
+}
+.btn {
+  display: inline-block;
+  padding: 0.8rem 3rem;
+  border: 0.2rem solid var(--red);
+  color: var(--red);
+  cursor: pointer;
+  font-size: 1.7rem;
+  border-radius: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  margin-top: 1rem;
+}
 
-</div>
-</div>
-<!-- ====================== -->
-<!-- End Cart -->
-<!-- ====================== -->
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--red);
+  transition: 0.3s linear;
+  z-index: -1;
+}
 
- <!-- header section ends -->
+.btn:hover::before {
+  width: 100%;
+  left: 0;
+}
 
-<!-- home section starts -->
-<section class="home" id="home">
-    <div class="content">
-        <h3>food made with love</h3>
-        <p>Bánh Kẹo Ngọt Đầy Đủ Hương Vị</p>
-        <a href="#"class="btn">order now</a>
-    </div>
-    <div class="image">
-        <img src="./assets/img/home-img.png" alt="">
-    </div>
-</section>
-<!-- home section ends --> 
+.btn:hover {
+  color: #fff;
+}
+header {
+  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 2rem 9%;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+header .logo {
+  position: relative;
+  left: -120px;
+  padding-left: 20px;
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: #666;
+}
 
+header .logo i {
+  padding: 0.5rem;
+  color: var(--red);
+}
+header .navbar {
+  position: relative;
+  /* right: 500px; */
+}
+header .navbar a {
+  position: relative;
+  bottom: 0px;
+  font-size: 2rem;
+  margin-left: 2rem;
+  color: #666;
+  right: 200px;
+}
+header .navbar a:hover {
+  color: var(--red);
+}
 
+#menu-bar {
+  font-size: 2.1rem;
+  cursor: pointer;
+  color: #666;
+  border: 0.1rem solid #666;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1.5rem;
+  display: none;
+}
 
-<!-- speciality section starts -->
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  min-height: 100vh;
+  align-items: center;
+  background: url(../assets/img/home-bg.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.home .content {
+  flex: 1 1 40rem;
+  padding-top: 6.5rem;
+}
 
-<section class="speciality" id="speciality">
-    <h1 class="heading"> our <span>speciality</span> </h1>
-    <div class="box-container">
-        <div class="box">
-            <img class="image" src="./assets/img/s-img-1.jpg" alt="">
-            <div class="content">
-                <img src="./assets/img/s-1.png" alt="">
-                <h3>Bánh Mỳ Kẹp Thịt</h3>
-                <p>Tổng Hợp Những Loại Bánh Ngon Nhất Thế Giới</p>
-            </div>
-        </div>
-        <div class="box">
-            <img class="image" src="./assets/img/s-img-2.jpg" alt="">
-            <div class="content">
-                <img src="./assets/img/s-2.png" alt="">
-                <h3>Bánh Pizza</h3>
-                <p>Tổng Hợp Những Loại Bánh Ngon Nhất Thế Giới</p>
-            </div>
-        </div>
-        <div class="box">
-            <img class="image" src="./assets/img/s-img-3.jpg" alt="">
-            <div class="content">
-                <img src="./assets/img/s-3.png" alt="">
-                <h3>Kem lạnh ngon tuyệt</h3>
-                <p>Tổng Hợp Những Loại Bánh Ngon Nhất Thế Giới</p>
-            </div>
-        </div>
-        <div class="box">
-            <img class="image" src="./assets/img/s-img-4.jpg" alt="">
-            <div class="content">
-                <img src="./assets/img/s-4.png" alt="">
-                <h3>Nước ép trái cây</h3>
-                <p>Tổng Hợp Những Loại Bánh Ngon Nhất Thế Giới</p>
-            </div>
-        </div>
-        <div class="box">
-            <img class="image" src="./assets/img/s-img-5.jpg" alt="">
-            <div class="content">
-                <img src="./assets/img/s-5.png" alt="">
-                <h3>Đồ ngọt</h3>
-                <p>Tổng Hợp Những Loại Bánh Ngon Nhất Thế Giới</p>
-            </div>
-        </div>
-        <div class="box">
-            <img class="image" src="./assets/img/s-img-6.jpg" alt="">
-            <div class="content">
-                <img src="./assets/img/s-6.png" alt="">
-                <h3>Healty</h3>
-                <p>Tổng Hợp Những Loại Bánh Ngon Nhất Thế Giới</p>
-            </div>
-        </div>
-    </div>
-    
-    
+.home.image {
+  flex: 1 1 40rem;
+}
 
-</section>
+.home .image img {
+  width: 100%;
+  padding: 1rem;
+  animation: float 10s linear infinite;
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0rem);
+  }
+  50% {
+    transform: translateY(3rem);
+  }
+}
 
-<!-- speciality section ends -->
+.form {
+  --width-of-input: 200px;
+  --border-height: 1.5px;
+  --border-before-color: #a5f1e9;
+  --border-after-color: #666;
+  --input-hovered-color: #4985e01f;
+  position: absolute;
+  width: var(--width-of-input);
+  top: -3px;
+  right: 100px;
+  top: 20px;
+}
+/* styling of Input */
+.input {
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  background-color: transparent;
+  width: 100%;
+  /* box-sizing: border-box; */
+  padding-inline: 0.5em;
+  padding-block: 0.2em;
+  border: none;
+  border-bottom: var(--border-height) solid var(--border-before-color);
+}
+/* styling of animated border */
+.input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+/* Hover on Input */
+input:hover {
+  background: var(#666);
+}
+.fa-sharp {
+  max-width: 100px;
+  color: #05fbff;
+  position: relative;
+  top: 200px;
+}
+input:focus {
+  outline: none;
+}
+input:focus ~ .input-border {
+  width: 100%;
+}
 
-<!-- popular selection starts -->
-<section class="popular" id="popular">
-    <h1 class="heading">most<span> popular </span>foods</h1>
-    <div class="box-container">
-        <!-- BOX -->
-        <div class="box">
-            <span class="price">20.000 VNĐ</span>
-            <img src="./assets/img/p-1.jpg" alt="">
-            <h3>Bánh mỳ kẹp thịt</h3>
-            <div class="add-product">
-                <button class="minus">-</button>
-                <input class="num" id="card1" value=0></input>
-            <button class="plus">+</button>
-            </div>
-            <a href="#" class="btn">order now</a>
-        </div>
-        <div class="box">
-            <span class="price">80.000 VNĐ</span>
-            <img src="./assets/img/p-2.jpg" alt="">
-            <h3>Bánh kem hoa quả  </h3>
-            <div class="add-product">
-                <button id="" class="minus">-</button>
-                <input class="num" id="card1" value=0></input>
-                <button class="plus">+</button>
-            </div>
-            <a href="#" class="btn">order now</a>
-        </div>
-        <div class="box">
-            <span class="price">15.000 VNĐ</span>
-            <img src="./assets/img/p-3.jpg" alt="">
-            <h3>Bánh ngọt</h3>
-            <div class="add-product">
-                <button id="" class="minus">-</button>
-                <input class="num" id="card1" value=0></input>
-                <button class="plus">+</button>
-            </div>
-            <a href="#" class="btn">order now</a>
-        </div>
-        <div class="box">
-            <span class="price">10.000 VNĐ</span>
-            <img src="./assets/img/p-4.jpg" alt="">
-            <h3>Bánh cupcakes</h3>
-            <div class="add-product">
-                <button id="" class="minus">-</button>
-                <input class="num" id="card1" value=0></input>
-                <button class="plus">+</button>
-            </div>
-            <a href="#" class="btn">order now</a>
-        </div>
-        <div class="box">
-            <span class="price">45.000 VNĐ</span>
-            <img src="./assets/img/p-5.jpg" alt="">
-            <h3>Nước ép hoa quả</h3>
-            <div class="add-product">
-                <button id="" class="minus">-</button>
-                <input class="num" id="card1" value=0></input>
-                <button class="plus">+</button>
-            </div>
-            <a href="#" class="btn">order now</a>
-        </div>
-        <div class="box">
-            <span class="price">20.000</span>
-            <img src="./assets/img/p-6.jpg" alt="">
-            <h3>Kem lạnh </h3>
-            <div class="add-product">
-                <button id="" class="minus">-</button>
-                <input class="num" id="card1" value=0></input>
-                <button class="plus">+</button>
-            </div>
-            <a href="#" class="btn">order now</a>
-        </div>
-    </div>
+.cart {
+  cursor: pointer;
+  position: absolute;
+  right: 30px;
+  top: 10px;
+}
 
-</section>
-<!-- popular selection ends -->
+.home .content h3 {
+  font-size: 5rem;
+  color: #333;
+}
+.home .content p {
+  font-size: 1.7rem;
+  color: #666;
+  padding: 1rem 0;
+}
 
-<!-- steps section starts -->
-<section class="steps">
-    <div class="box">
-        <img src="./assets/img/step-1.jpg" alt="">
-        <h3>Chọn món ăn yêu thích</h3>
-    </div>
-    <div class="box">
-        <img src="./assets/img/step-2.jpg" alt="">
-        <h3>Giao hàng nhanh chóng</h3>
-    </div>
-    <div class="box">
-        <img src="./assets/img/step-3.jpg" alt="">
-        <h3>Thanh toán dễ dàng</h3>
-    </div>
-    <div class="box">
-        <img src="./assets/img/step-4.jpg" alt="">
-        <h3>Thưởng thức thôi nào</h3>
-    </div>
+.speciality .box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
 
-</section>
-<!-- steps section ends -->
+.speciality .box-container .box {
+  flex: 1 1 30rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  border: 0.1rem solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
 
-<!-- gallery section starts -->
+.speciality .box-container .box .image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: -100%;
+  left: 0;
+}
 
-<section class="gallery" id="gallery">
-    <h1 class="heading">our food <span>gallery</span></h1>
-    <div class="box-container">
-        <div class="box">
-            <img src="./assets/img/g-1.jpg" alt="">
-            <div class="content">
-                <h3>Hamburger</h3> 
-                <p></p>
-                <a href="#" class="btn">order now</a>
-            </div>
-        </div>
-        <div class="box">
-            <img src="./assets/img/g-2.jpg" alt="">
-            <div class="content">
-                <h3>Bánh Ngọt</h3> 
-                <p></p>
-                <a href="#" class="btn">order now</a>
-            </div>
-        </div>
-        <div class="box">
-            <img src="./assets/img/g-3.jpg" alt="">
-            <div class="content">
-                <h3>Bánh Ngọt</h3> 
-                <p></p>
-                <a href="#" class="btn">order now</a>
-            </div>
-        </div>
-        <div class="box">
-            <img src="./assets/img/g-4.jpg" alt="">
-            <div class="content">
-                <h3>Bánh Kem</h3> 
-                <p></p>
-                <a href="#" class="btn">order now</a>
-            </div>
-        </div>
-        <div class="box">
-            <img src="./assets/img/g-5.jpg" alt="">
-            <div class="content">
-                <h3>Bánh Ngọt</h3> 
-                <p></p>
-                <a href="#" class="btn">order now</a>
-            </div>
-        </div>
-        <div class="box">
-            <img src="./assets/img/g-6.jpg" alt="">
-            <div class="content">
-                <h3>Gà rán</h3> 
-                <p></p>
-                <a href="#" class="btn">order now</a>
-            </div>
-        </div>
-        <div class="box">
-            <img src="./assets/img/g-7.jpg" alt="">
-            <div class="content">
-                <h3>Bánh trứng muối</h3> 
-                <p></p>
-                <a href="#" class="btn">order now</a>
-            </div>
-        </div>
-        <div class="box">
-            <img src="./assets/img/g-8.jpg" alt="">
-            <div class="content">
-                <h3>Bánh Socola</h3> 
-                <p></p>
-                <a href="#" class="btn">order now</a>
-            </div>
-        </div>
-        <div class="box">
-            <img src="./assets/img/g-9.jpg" alt="">
-            <div class="content">
-                <h3>Bánh Hạnh nhân</h3> 
-                <p></p>
-                <a href="#" class="btn">order now</a>
-            </div>
-        </div>
-    </div>
-</section>
+.speciality .box-container .box .content {
+  text-align: center;
+  background: #fff;
+  padding: 2rem;
+}
 
-<!-- gallery section ends -->
+.speciality .box-container .box .content img {
+  margin: 1.5rem 0;
+}
 
-<!-- review section starts -->
+.speciality .box-container .box .content h3 {
+  font-size: 2.5rem;
+  color: #333;
+}
 
-<section class="review" id="review">
-    <h1 class="heading">reviews</span></h1>
-    <div class="box-container">
-        <div class="box">
-            <img src="./assets/img/donadoeat.jpg" style="" alt="">
-            <h3>Cristiano Ronaldo</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <p>Từ bé đến giờ tối chưa từng ăn cái bánh nào nó ngon như thế này. Thật tuyệt vời</p>
-        </div>
-        <div class="box">
-            <img src="./assets/img/mesy.jpg" alt="">
-            <h3>Maria</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <p>Đồ ăn ở đây rất ngon, tôi sẽ quay lại vào ngày gần nhất</p>
-        </div>
-        <div class="box">
-            <img src="./assets/img/neyma.jpg" alt="">
-            
-            
-            <h3>Neymar</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-            </div>
-            <p>Rất ngon miệng, phục vụ rất chu đáo và nhiệt tình</p>
-        </div>
-    </div>
-</section>
+.speciality .box-container .box .content p {
+  font-size: 1.6rem;
+  color: #666;
+  padding: 1rem 0;
+}
 
-<!-- review section ends -->
+.speciality .box-container .box:hover .image {
+  top: 0;
+}
+.speciality .box-container .box:hover .content {
+  transform: translateY(100%);
+}
 
-<!-- oder section starts -->
- 
-<section class="order" id="order">
+.popular .box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
 
-    <h1 class="heading"> <span>order</span> now </h1>
+.popular .box-container .box {
+  padding: 2rem;
+  background: #fff;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  border: 0.1rem solid rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  text-align: center;
+  flex: 1 1 30rem;
+  position: relative;
+}
 
-    <div class="row">
-        
-        <div class="image">
-            <img src="./assets/img/oder1.jpg" alt="">
-        </div>
+.popular .box-container .box img {
+  height: 25rem;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 0.5rem;
+}
 
-        <form action="">
+.popular .box-container .box .price {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+  background: var(--red);
+  color: #fff;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
 
-            <div class="inputBox">
-                <input type="text" placeholder="name">
-                <input type="email" placeholder="email">
-            </div>
+.popular .box-container .box h3 {
+  color: #333;
+  font-size: 2.5rem;
+  padding-top: 1rem;
+}
+.add-product {
+  padding: 10px 0 10px 0;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+}
+.plus {
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  font-weight: 900;
+  border-radius: 20px;
+  background-color: #666;
+  color: #fff;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.minus {
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  font-weight: 900;
+  border-radius: 20px;
+  background-color: #666;
+  color: #fff;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.plus:hover {
+  background-color: rgb(53, 50, 50);
+}
+.minus:hover {
+  background-color: rgb(53, 50, 50);
+}
+.num {
+  justify-content: center;
+  text-align: center;
+  padding-top: 3px;
+  font-size: 20px;
+  font-weight: 900;
+  width: 50px;
+  border-left: 2px solid rgba(0, 0, 0, 0.2);
+  border-right: 2px solid rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
 
-            <div class="inputBox">
-                <input type="number" placeholder="number">
-                <input type="text" placeholder="food name">
-            </div>
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem;
+}
 
-            <textarea placeholder="address" name="" id="" cols="30" rows="10"></textarea>
+.steps .box {
+  flex: 1 1 25rem;
+  padding: 1rem;
+  text-align: center;
+}
 
-            <input type="submit" value="order now" class="btn">
+.steps .box img {
+  border-radius: 50%;
+  border: 1rem solid rgb(199, 195, 195);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
 
-        </form>
+.steps .box h3 {
+  font-size: 3rem;
+  color: #333;
+  padding: 1rem;
+}
 
-    </div>
+.gallery .box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
 
+.gallery .box-container .box {
+  height: 25rem;
+  flex: 1 1 30rem;
+  border: 1rem solid #fff;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
 
-</section>
- 
-<!-- oder section ends -->
+.gallery .box-container .box img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.gallery .box-container .box .content {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  padding-top: 5rem;
+  text-align: center;
+}
 
-<!-- footer section -->
+.gallery .box-container .box .content h3 {
+  font-size: 2.5rem;
+  color: #333;
+}
 
-<section class="footer">
+.gallery .box-container .box .content p {
+  font-size: 1.5rem;
+  color: #666;
+  padding: 1rem 0;
+}
 
-    <div class="share">
-        <a href="#" class="btn">facebook</a>
-        <a href="#" class="btn">twitter</a>
-        <a href="#" class="btn">instagram</a>
-        <a href="#" class="btn">tiktok</a>
-        <a href="#" class="btn">nimoTV</a>
-    </div>
+.gallery .box-container .box:hover .content {
+  top: 0;
+}
 
-    <h1 class="credit">created by : <span> kongKun</h1>
+.review .box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
 
-</seciton>
-<!-- <div class="loader-container">
-    <img src="./assets/img/load.gif" alt="">
+.review .box-container .box {
+  text-align: center;
+  padding: 2rem;
+  border: 1rem solid #fff;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  flex: 1 1 30rem;
+  background: #333;
+  margin-top: 6rem;
+}
 
-</div> -->
+.review .box-container .box img {
+  height: 20rem;
+  width: 20rem;
+  border-radius: 50%;
+  border: 1rem solid rgb(216, 213, 213);
+  margin-top: -8rem;
+  object-fit: cover;
+}
 
-<!-- scroll top button -->
+.review .box-container .box h3 {
+  font-size: 2.5rem;
+  color: #fff;
+  padding: 0.5rem 0;
+}
 
-<a href="#home"class="fa fa-angle-up" id="scroll-top"></a>
+.review .box-container .box .stars i {
+  font-size: 2rem;
+  color: var(--red);
+  padding: 0.5rem 0;
+}
 
+.review .box-container .box p {
+  font-size: 1.5rem;
+  color: #eee;
+  padding: 1rem 0;
+}
 
+.order .row {
+  padding: 2rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  border-radius: 0.5rem;
+}
 
-<script src="./script.js"></script></body>
-</html>
+.order .row .image {
+  flex: 1 1 30rem;
+}
+
+.order .row .image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.order .row form {
+  flex: 1 1 50rem;
+  padding: 1rem;
+}
+
+.order .row form .inputBox {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.order .row form .inputBox input,
+.order .row form textarea {
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: 1.7rem;
+  color: #333;
+  text-transform: none;
+  border: 0.1rem solid rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  width: 49%;
+}
+
+.order .row form textarea {
+  width: 100%;
+  resize: none;
+  height: 15rem;
+}
+
+.order .row form .btn {
+  background: none;
+}
+
+.order .row form .btn:hover {
+  background: var(--red);
+}
+.footer {
+  background: #000;
+  text-align: center;
+}
+
+.footer .share {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer .credit {
+  padding: 2.5rem 1rem;
+  color: #fff;
+  font-weight: normal;
+  font-size: 2rem;
+}
+
+.footer .credit span {
+  color: var(--red);
+}
+#scroll-top {
+  position: fixed;
+  top: -120%;
+  right: 2rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 4rem;
+  background: var(--red);
+  color: #fff;
+  border-radius: 0.5rem;
+  transition: 0.5s linear;
+  z-index: 1000;
+}
+
+#scroll-top.active {
+  top: calc(100% - 12rem);
+}
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.loader-container.fade-out {
+  top: -120%;
+}
+/* media queries */
+@media (max-width: 1148px) {
+  /* html {
+      font-size: 75%;
+    } */
+  header .logo {
+    left: 2px;
+  }
+  .form {
+    right: 0;
+    top: 30px;
+  }
+  .input {
+    font-size: 13px;
+    width: 50%;
+  }
+  input:focus ~ .input-border {
+    width: 58%;
+  }
+  .cart {
+    right: 30px;
+    top: 18px;
+  }
+  header .navbar a {
+    font-size: 1.6rem;
+    right: 200px;
+  }
+  header {
+    padding: 2rem;
+  }
+  section {
+    padding: 2rem;
+  }
+}
+@media (max-width: 1035px) {
+  html {
+    font-size: 55%;
+  }
+  .form {
+    margin-right: 40px;
+    right: 0;
+    top: 18px;
+    width: 20px;
+  }
+  .input {
+    font-size: 13px;
+    /* width: 50%; */
+  }
+  input:focus ~ .input-border {
+    /* width: 58%; */
+  }
+  .cart {
+    margin-right: 20px;
+    max-width: 40px;
+    right: 30px;
+    top: 10px;
+  }
+}
+@media (max-width: 820px) {
+  #menu-bar {
+    display: initial;
+  }
+  header .logo {
+    left: -30px;
+  }
+  header .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0px;
+    background: #f7f7f7;
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+
+  header .navbar.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  header .navbar a {
+    margin: 1.5rem;
+    right: 0px;
+    padding: 1.5rem;
+    display: block;
+    border: 0.2rem solid rgba(0, 0, 0, 0.1);
+    border-left: 0.5rem solid var(--red);
+    background: #fff;
+  }
+
+  .form {
+    width: 200px;
+    right: 0px;
+    top: 18px;
+  }
+  .input {
+    font-size: 10px;
+    width: 50%;
+  }
+  input:focus ~ .input-border {
+    width: 58%;
+  }
+  .cart {
+    max-width: 40px;
+    right: 55px;
+    top: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  html {
+    font-size: 50%;
+  }
+  .cart{
+right: -10px;
+top: 0;
+  }
+  #menu-bar{
+    position: absolute;
+    right: 70px;
+  }
+  .form {
+    width: 200px;
+    left: 140px;
+    top: 18px;
+  }
+  .input {
+    font-size: 10px;
+    width: 50%;
+  }
+  input:focus ~ .input-border {
+    width: 50%;
+  }
+  header .logo{
+    font-size: 15px;
+  }
+  .modal{
+font-size: 100%;
+  }
+}
+@media(max-width: 368px){
+  #menu-bar{
+    display: none;
+  }
+}
+
+/* ------------------- */
+/*        CART         */
+/* ------------------- */
+/* *{
+  padding: 0;
+  margin: 0;
+  font-family: 'poppins';
+  box-sizing: border-box;
+} */
+.modal {
+  visibility: hidden;
+  position: relative;
+  position: fixed;
+  top: 0%;
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(0.01);
+  width: 100%;
+  height: 100%;
+  z-index: 999999999999;
+  transition: transform 0.4s;
+}
+.open-modal {
+  visibility: visible;
+  transform: scale(1);
+}
+.xmark {
+  color: #f7f7f7;
+  font-size: 30px;
+  position: absolute;
+  right: 0;
+  padding: 10px 30px;
+  cursor: pointer;
+}
+hr {
+  border: 0.1px solid rgb(232, 170, 13);
+}
+.container-cart {
+  border-radius: 10px;
+  z-index: 99999;
+  /* position: fixed; */
+  position: relative  ;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(50, 77, 77);
+  font-size: 15px;
+  width: 800px;
+  height: 485px;
+}
+.header-cart {
+  display: flex;
+  padding: 10px 0 10px 10px;
+}
+.header-cart h2 {
+  color: #fff;
+  font-size: 30px;
+  font-weight: 2000;
+  background: linear-gradient(90deg, #05fbff, #d15101);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  padding: 2px 0 0 10px;
+}
+.body-cart {
+  display: flex;
+}
+.pay {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 40%;
+}
+.title {
+  color: #fff;
+  padding-top: 10px;
+}
+/* ----------------------------- */
+/* --------- InputBox ---------- */
+/* ----------------------------- */
+.inputbox {
+  position: relative;
+  width: 196px;
+  justify-content: center;
+  margin-bottom: 25px;
+  padding-top: 10px;
+}
+.inputbox input {
+  text-transform: uppercase;
+  position: relative;
+  width: 100%;
+  left: 30%;
+  top: 2px;
+  padding: 5px 10px 5px;
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  color: #23242a;
+  font-size: 1.2em;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+  z-index: 10;
+  text-align: center;
+}
+
+.inputbox span {
+  width: 300px;
+  position: absolute;
+  left: 15px;
+  padding: 10px 10px 10px;
+  font-size: 1em;
+  color: #8f8f8f;
+  letter-spacing: 00.05em;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.inputbox input:valid ~ span,
+.inputbox input:focus ~ span {
+  color: #45f3ff;
+  transform: translateX(-5px) translateY(-28px);
+  font-size: 0, 75em;
+}
+
+.inputbox i {
+  position: absolute;
+  left: 30%;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #45f3ff;
+  border-radius: 4px;
+  transition: 0.5s;
+  pointer-events: none;
+  z-index: 9;
+}
+
+.inputbox input:valid ~ i,
+.inputbox input:focus ~ i {
+  height: 28px;
+}
+/* ----------------------------- */
+/* --------  END InputBox  ----- */
+/* ----------------------------- */
+.product {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 60%;
+  /* z-index:999999;   */
+  /* display: flex; */
+}
+.product h3 {
+  padding: 10px;
+  color: #fff;
+}
+.hide {
+  /* display: none; */
+}
