@@ -824,8 +824,8 @@ hr {
   transform: translate(-50%, -50%);
   background-color: rgb(50, 77, 77);
   font-size: 15px;
-  width: 500px;
-  height: 500px;
+  width: 800px;
+  height: 505px;
 }
 .header-cart {
   display: flex;
