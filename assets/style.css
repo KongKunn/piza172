@@ -797,6 +797,7 @@ font-size: 20%;
   height: 100%;
   z-index: 999999999999;
   transition: transform 0.4s;
+
 }
 .open-modal {
   visibility: visible;
@@ -823,8 +824,8 @@ hr {
   transform: translate(-50%, -50%);
   background-color: rgb(50, 77, 77);
   font-size: 15px;
-  width: 800px;
-  height: 485px;
+  width: 500px;
+  height: 500px;
 }
 .header-cart {
   display: flex;
